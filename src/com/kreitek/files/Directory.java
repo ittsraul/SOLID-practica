@@ -37,6 +37,7 @@ public class Directory extends FileSystemItemBase implements FileSystemItem {
         files.remove(file);
     }
 
+    /* No quiere que lance excepsion sino que devuelva el tamaño total de fichgeros y directorios que contiene */
     @Override
     public int getSize() {
         throw new UnsupportedOperationException(NO_ES_VALIDO_PARA_DIRECTORIOS);
