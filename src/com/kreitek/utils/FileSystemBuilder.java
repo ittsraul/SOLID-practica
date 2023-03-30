@@ -13,6 +13,7 @@ public class FileSystemBuilder {
         return new FileSystemBuilder();
     }
 
+    // sobrecarga-> mismo nombre distinto parametro
     public FileSystemBuilder() {
         root = new Directory(null, "");
         currentDirectory = root;

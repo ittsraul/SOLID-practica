@@ -12,5 +12,12 @@ public interface FileSystemItem {
     String getFullPath();
     List<FileSystemItem> listFiles();
     void addFile(FileSystemItem file);
-    void removeFile(FileSystemItem file);
+    void removeFile(FileSystemItem file);                                             
+    String getExtension();                           
+    int getSize();                                   
+    void open();                                     
+     void close();                                    
+     void setPosition(int numberOfBytesFromBeginning);
+     byte[] read(int numberOfBytesToRead);            
+     void write(byte[] buffer); 
 }

@@ -7,6 +7,7 @@ public class Directory extends FileSystemItemBase implements FileSystemItem {
 
     private static final String NO_ES_VALIDO_PARA_DIRECTORIOS = "No es válido para directorios";
     private final List<FileSystemItem> files;
+    private int totalSize = 0;
 
     public Directory(FileSystemItem parent, String name) {
         super(parent, name);
@@ -31,16 +32,36 @@ public class Directory extends FileSystemItemBase implements FileSystemItem {
             file.setParent(this);
         }
     }
+ 
+ 
 
-    @Override
-    public void removeFile(FileSystemItem file) {
-        files.remove(file);
-    }
+
+
+
+
+
+
+ 	
+ 	@Override
+ 	  public void removeFile(FileSystemItem file) {
+ 	      files.remove(file);
+ 	  }
+
+ 
+ 
+ 
+ 
+
 
     /* No quiere que lance excepsion sino que devuelva el tamaño total de fichgeros y directorios que contiene */
     @Override
     public int getSize() {
-        throw new UnsupportedOperationException(NO_ES_VALIDO_PARA_DIRECTORIOS);
+       // throw new UnsupportedOperationException(NO_ES_VALIDO_PARA_DIRECTORIOS);
+    	for(int i = 0; i < files.size(); i++) {
+    		// obteniendo elemento de file(arrayList) y ejecutando el getSize() y si es un fichero retorna el tamaño y si es un directorio esta ejecutandose a si mismo y suma los elementos y retorna el total
+    		totalSize += files.get(i).getSize();
+    	}
+    	return totalSize;
     }
 
     @Override

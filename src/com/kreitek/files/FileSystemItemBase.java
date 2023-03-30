@@ -53,12 +53,16 @@ public abstract class FileSystemItemBase implements FileSystemItem {
         return path;
     }
 
+    //dude of change the abstaract funtions in another files
     @Override
     public abstract String getExtension();
 
     @Override
     public abstract List<FileSystemItem> listFiles();
 
+    @Override
+    public abstract void write(byte[] buffer);
+    
     @Override
     public abstract int getSize();
 
@@ -71,8 +75,6 @@ public abstract class FileSystemItemBase implements FileSystemItem {
     @Override
     public abstract byte[] read(int numberOfBytesToRead);
 
-    @Override
-    public abstract void write(byte[] buffer);
 
     public abstract void close();
 }
