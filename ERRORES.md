@@ -11,8 +11,53 @@ In this commit i was solve the problem who is announced at the activity, so i wa
 * RESPONSABILIDAD ÚNICA 
 
 The files has more funcionalities, so we can fork this in other classes.
+The next fragment show the file content who has reference to transform/format converter
+
+```java
+ package com.kreitek.files;
+// 
+ import com.kreitek.files.error.InvalidFileFormatException;
+
+ public class FileConverter implements FileSystemItem, Manager{
+ 	public FileSystemItem convertMp3ToWav() {
+        if (!"mp3".equalsIgnoreCase(getExtension())) {
+            throw new InvalidFileFormatException("El fichero debe ser mp3");
+        }
+ 
+        int indexOfLastDot = name.lastIndexOf(".");
+        String nameWithoutExtension = name;
+        if (indexOfLastDot > 0) {
+            nameWithoutExtension = name.substring(0, indexOfLastDot);
+        }
+        String newFileName = nameWithoutExtension + ".wav";
+        FileSystemItem result = new File(parent, newFileName);
+        result.open();
+        // Lógica de conversión de mp3 a wav. Se lee de este fichero y se escribe en result
+        result.close();
+        return result;
+    }
+ 
+    public FileSystemItem convertWavToMp3() {
+        if (!"wav".equalsIgnoreCase(getExtension())) {
+            throw new InvalidFileFormatException("El fichero debe ser wav");
+        }
+ 
+        int indexOfLastDot = name.lastIndexOf(".");
+        String nameWithoutExtension = name;
+        if (indexOfLastDot > 0) {
+            nameWithoutExtension = name.substring(0, indexOfLastDot);
+        }
+        String newFileName = nameWithoutExtension + ".mp3";
+        FileSystemItem result = new File(parent, newFileName);
+        result.open();
+        // Lógica de conversión de wav a mp3. Se lee de este fichero y se escribe en result
+        result.close();
+        return result;
+    }
+ }
 
 
+```
 
 * ABIERTO-CERRADO
 
@@ -180,6 +225,23 @@ public interface Manager {
 Apllying the single Responsability principle in the filesystem.java who must do a single functions, not more functions.
 
 
+@ID of the commit: **b7c27164774aaa45a755505c58b0d6a86a740d9f**
+
+Applying the Single Responsability principle with the fileManager to fork the code
+
+@Id of the commit: **4790292facd8c69a2475e07047637818d06e5884**
+
+Applying the single responsability particle in the fileitembase file, the manager interface was created, and all running
+
 ## Principio abierto-cerrado:
 
-@ID of the commit
+@ID of the commit: **4790292facd8c69a2475e07047637818d06e5884**
+
+Apllying the open-close principle in the filesystembase, changing the if/else.
+
+### Principle Segregación de interfaces:
+
+@Id of the commit: **a0aacde7d94cf914c3e2b5060609e36ab817e097**
+
+Changing the distribution of the files in directory, applying the segregation, but not completely.
+
